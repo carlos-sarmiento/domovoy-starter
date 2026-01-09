@@ -1,0 +1,52 @@
+{
+	"Create Domovoy App with Config": {
+		"scope": "python",
+		"prefix": "app",
+		"body": [
+			"from dataclasses import dataclass",
+			"from domovoy.applications import AppBase, AppConfigBase",
+			"",
+			"",
+			"@dataclass(kw_only=True)",
+			"class ${1:AppName}Config(AppConfigBase):",
+			"    ...",
+			"",
+			"",
+			"class ${1:AppName}(AppBase[${1:AppName}Config]):",
+			"    async def initialize(self) -> None:",
+			"        ..."
+		],
+		"description": "Create an app definition"
+	},
+	"Create Domovoy App without Config": {
+		"scope": "python",
+		"prefix": "app_no_config",
+		"body": [
+			"from domovoy.applications import AppBase, EmptyAppConfig",
+			"",
+			"",
+			"class ${1:AppName}(AppBase[EmptyAppConfig]):",
+			"    async def initialize(self) -> None:",
+			"        ...",
+			""
+		],
+		"description": "Create an app definition without a config"
+	},
+	"Register Domovoy App": {
+		"scope": "python",
+		"prefix": "register",
+		"body": [
+			"from domovoy.applications.registration import register_app",
+			"",
+			"",
+			"register_app(",
+			"    app_class=${1:AppName},",
+			"    app_name=\"${2:name}\",",
+			"    config=${1:AppName}Config(",
+			"        ",
+			"    )",
+			")"
+		],
+		"description": "Register an app"
+	}	
+}

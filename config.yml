@@ -1,0 +1,26 @@
+app_suffix: _apps
+hass_access_token: home-assistant-long-lived-token
+app_path: /config/apps # This is from the mounted volume on the docker container
+install_pip_dependencies: true
+hass_url: "ws://home-assistant.local:8123"
+timezone:  America/Chicago
+
+astral:
+  name:  House
+  region:  Domovoy
+  timezone:  America/Chicago
+  # Breckenridge, CO Update with your location
+  latitude: 39.482231
+  longitude: -106.046181 
+
+logs:
+  _base:
+    handlers:
+      - StreamLoggingHandler:
+          log_level: info
+          stream: "stdout"
+
+  _default:
+    handlers:
+      - FileLoggingHandler:
+          filename: "main.log"
